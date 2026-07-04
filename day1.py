@@ -8,8 +8,18 @@ if (5>2):
 else:
     print("False")
 
+print(1 + 2) #addition
+
+print(2 - 1) # subtraction
+
+print(2 * 3) # multiplication
+
 print(5//2) # floor division
 
 print(5/2) # normal division
+
+print( 3 % 2) # Modulus
+
+print( 2** 2) #exponential
 
 print(type("eight")) 
