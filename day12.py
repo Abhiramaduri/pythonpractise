@@ -17,6 +17,7 @@ result = [
 print(result)
 
 
+
 #Change the following list of lists to a list of concatenated strings:
 #names = [[('Asabeneh', 'Yetayeh')], [('David', 'Smith')], [('Donald', 'Trump')], [('Bill', 'Gates')]]
 #output
@@ -42,4 +43,16 @@ print(full_names)
 
 power_table = [(n, 1, n, n**2, n**3, n**4, n**5) for n in range(11)]
 print(power_table)
+
+
+# Flatten the following list to a new list:
+# output:
+# [['FINLAND','FIN', 'HELSINKI'], ['SWEDEN', 'SWE', 'STOCKHOLM'], ['NORWAY', 'NOR', 'OSLO']]
+
+flattened_countries = [
+    [country.upper(), country[:3].upper(), city.upper()]
+    for [(country, city)] in countries
+]
+print(flattened_countries)
+
 
