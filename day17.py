@@ -1,3 +1,6 @@
+#Write a function which count number of lines and number of words in a text. All the files are in the data the folder:
+#Read obama_speech.txt file and count number of lines and words
+
 file_name = "data/obama_speech.txt"
 
 with open(file_name) as f:
