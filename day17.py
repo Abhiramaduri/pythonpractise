@@ -115,3 +115,5 @@ print(most_spoken_languages("./data/countries_data.json", 3))
 #{'country': 'India', 'population': 1295210000},
 #{'country': 'United States of America', 'population': 323947000}
 #]
+
+#Extract all incoming email addresses as a list from the email_exchange_big.txt file.
