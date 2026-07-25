@@ -26,41 +26,78 @@
 #Standard Deviation:  4.2
 #Frequency Distribution: [(20.0, 26), (16.0, 27), (12.0, 32), (8.0, 37), (8.0, 34), (8.0, 33), (8.0, 31), (8.0, 24), (4.0, 38), (4.0, 29), (4.0, 25)]
 
-#Create a class called PersonAccount. It has firstname, lastname, incomes, expenses properties and it has total_income, total_expense, account_info, add_income, add_expense and account_balance methods. Incomes is a set of incomes and its description. The same goes for expenses.
-
-class PersonAccount:
-    def __init__(self, firstname, lastname):
-        self.firstname = firstname
-        self.lastname = lastname
-        self.incomes = set()
-        self.expenses = set()
-
-    def add_income(self, amount, description):
-        self.incomes.add((amount, description))
-
-    def add_expense(self, amount, description):
-        self.expenses.add((amount, description))
-
-    def total_income(self):
-        return sum(amount for amount, _ in self.incomes)
-
-    def total_expense(self):
-        return sum(amount for amount, _ in self.expenses)
-
-    def account_info(self):
-        return f"First name: {self.firstname}\nLast name: {self.lastname}\nIncomes: {self.incomes}\nExpenses: {self.expenses}"
-
-    def account_balance(self):
-        return self.total_income() - self.total_expense()
+from collections import Counter
+from statistics import mean, median, mode
+import math
 
 
-account = PersonAccount('Asabeneh', 'Yetayeh')
-account.add_income(1000, 'Salary')
-account.add_income(500, 'Freelance work')
-account.add_expense(200, 'Rent')
-account.add_expense(100, 'Food')
+class Statistics:
+    def __init__(self, data):
+        self.data = data
 
-print('Total Income:', account.total_income())
-print('Total Expense:', account.total_expense())
-print('Account Balance:', account.account_balance())
-print(account.account_info())
+    def count(self):
+        return len(self.data)
+
+    def sum(self):
+        return sum(self.data)
+
+    def min(self):
+        return min(self.data)
+
+    def max(self):
+        return max(self.data)
+
+    def range(self):
+        return self.max() - self.min()
+
+    def mean(self):
+        return round(sum(self.data) / len(self.data), 2)
+
+    def median(self):
+        sorted_data = sorted(self.data)
+        n = len(sorted_data)
+        mid = n // 2
+        if n % 2 == 0:
+            return round((sorted_data[mid - 1] + sorted_data[mid]) / 2, 2)
+        return sorted_data[mid]
+
+    def mode(self):
+        counts = Counter(self.data)
+        max_count = max(counts.values())
+        modes = [value for value, count in counts.items() if count == max_count]
+        return (modes[0], max_count)
+
+    def std(self):
+        avg = self.mean()
+        variance = sum((x - avg) ** 2 for x in self.data) / (len(self.data) - 1)
+        return round(math.sqrt(variance), 2)
+
+    def var(self):
+        avg = self.mean()
+        return round(sum((x - avg) ** 2 for x in self.data) / (len(self.data) - 1), 2)
+
+    def freq_dist(self):
+        counts = Counter(self.data)
+        total = len(self.data)
+        return [(round(count / total * 100, 2), value) for value, count in sorted(counts.items())]
+
+    def describe(self):
+        return f"Count: {self.count()}\nSum:  {self.sum()}\nMin:  {self.min()}\nMax:  {self.max()}\nRange:  {self.range()}\nMean:  {self.mean()}\nMedian:  {self.median()}\nMode:  {self.mode()}\nVariance:  {self.var()}\nStandard Deviation:  {self.std()}\nFrequency Distribution: {self.freq_dist()}"
+
+
+ages = [31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26, 38, 37, 31, 34, 24, 33, 29, 26]
+
+data = Statistics(ages)
+
+print('Count:', data.count())
+print('Sum: ', data.sum())
+print('Min: ', data.min())
+print('Max: ', data.max())
+print('Range: ', data.range())
+print('Mean: ', data.mean())
+print('Median: ', data.median())
+print('Mode: ', data.mode())
+print('Standard Deviation: ', data.std())
+print('Variance: ', data.var())
+print('Frequency Distribution: ', data.freq_dist())
+print(data.describe())
