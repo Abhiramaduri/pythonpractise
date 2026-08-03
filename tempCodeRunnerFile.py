@@ -1,4 +1,4 @@
-for i in range(0,100):
-    for j in range(i,100):
-        print(i)
-        print(j)
+for i in range (5):
+    for j in range(5-i):
+        print("*", end="")
+    print()
